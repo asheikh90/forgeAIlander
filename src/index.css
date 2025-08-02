@@ -1,10 +1,167 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    scroll-behavior: smooth;
   }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  .btn-magnetic {
+    @apply relative overflow-hidden bg-gradient-to-r from-neon-blue to-neon-purple text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl;
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  }
+  
+  .btn-magnetic:hover {
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.6), 0 0 100px rgba(179, 71, 255, 0.4);
+    animation: magnetic 0.3s ease-out;
+  }
+  
+  .btn-magnetic::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-magnetic:hover::before {
+    left: 100%;
+  }
+  
+  .btn-secondary-magnetic {
+    @apply relative overflow-hidden bg-white/10 backdrop-blur-sm border-2 border-neon-blue/50 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:bg-white/20 hover:border-neon-blue;
+  }
+  
+  .card-3d-premium {
+    @apply relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 transition-all duration-500 hover:from-white/10 hover:to-white/15 hover:border-neon-blue/50 hover:transform hover:scale-105;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  
+  .card-3d-premium:hover {
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  
+  .gradient-text-premium {
+    @apply bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink bg-clip-text text-transparent;
+  }
+  
+  .section-padding {
+    @apply py-32 px-4 sm:px-6 lg:px-8;
+  }
+
+  .neural-grid {
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: circuit 20s linear infinite;
+  }
+
+  .holographic-border {
+    position: relative;
+    border: 2px solid transparent;
+    background: linear-gradient(45deg, rgba(0, 212, 255, 0.3), rgba(179, 71, 255, 0.3)) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: exclude;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .particle-field {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: particle 15s linear infinite;
+  }
+
+  .brain-core {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+  }
+
+  .brain-core::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, rgba(179, 71, 255, 0.2) 50%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: brain-pulse 4s ease-in-out infinite;
+  }
+
+  .data-stream {
+    position: absolute;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.8), transparent);
+    animation: data-flow 8s linear infinite;
+  }
+
+  .glow-text {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5), 0 0 20px rgba(0, 212, 255, 0.3), 0 0 30px rgba(0, 212, 255, 0.2);
+  }
+
+  .neon-border {
+    border: 1px solid rgba(0, 212, 255, 0.5);
+    box-shadow: 
+      0 0 10px rgba(0, 212, 255, 0.3),
+      inset 0 0 10px rgba(0, 212, 255, 0.1);
+  }
+
+  .hologram-effect {
+    background: linear-gradient(45deg, 
+      rgba(0, 212, 255, 0.1) 0%, 
+      rgba(179, 71, 255, 0.1) 25%, 
+      rgba(0, 255, 136, 0.1) 50%, 
+      rgba(255, 0, 128, 0.1) 75%, 
+      rgba(0, 212, 255, 0.1) 100%);
+    animation: hologram 6s ease-in-out infinite;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(0, 212, 255, 0.5), rgba(179, 71, 255, 0.5));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(0, 212, 255, 0.8), rgba(179, 71, 255, 0.8));
 }
